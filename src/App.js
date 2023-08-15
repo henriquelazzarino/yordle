@@ -1,29 +1,11 @@
-import { useEffect, useState } from "react";
-import champions from "./data/champions.txt"
+import { useContext, useEffect, useState } from "react";
+import { GameContext } from "./context/GameContext";
+import Game from "./components/Game";
 
 function App() {
-  const [answer, setAnswer] = useState(null);
-
-  useEffect(()=>{
-    if (answer==null) { 
-      fetch(champions)
-      .then(res => res.text())
-      .then(res2 => {
-        const array = res2.split(/\r?\n/)
-        setAnswer(array[Math.floor(Math.random()*array.length)])
-      })
-    }
-  }, [])
-
-  useEffect(()=>{
-    console.log(answer)
-  }, [answer])
-
-  return (
-    <div className="App">
-      
-    </div>
-  );
+  return <div className="App">
+    <Game />
+  </div>;
 }
 
 export default App;
