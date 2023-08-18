@@ -1,10 +1,16 @@
 import React from 'react'
 
 import "./Word.css"
+import Letter from '../Letter/Letter'
 
-const Word = () => {
+const Word = ({ size }) => {
+  const lettersArray = Array.from({ length: size }, (_, index) => index);
   return (
-    <div>Word</div>
+    <div className='word'>
+      {lettersArray.map((i)=>(
+        <Letter key={i}/>
+      ))}
+    </div>
   )
 }
 

@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { GameContext } from "../../context/GameContext";
 
 import "./Game.css";
+import Word from "../Word/Word";
 
 const Game = () => {
   const { answer, board, setBoard } = useContext(GameContext);
@@ -30,15 +31,9 @@ const Game = () => {
   console.log(board)
 
   return (
-    <div>
+    <div className="Game">
       {board&&board.map((linha, i) =>  (
-        <div style={{"background": "black", "height": "100px", "display": "flex"}}>
-          {linha.map((letra, j)=>(
-            <div style={{"background": "red", "height": "100px", "width": "50px"}}>
-              {answer[j]}
-            </div>
-          ))}
-        </div>
+        <Word size={linha.length} key={i}/>
       ))}
     </div>
   );

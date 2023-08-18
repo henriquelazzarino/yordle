@@ -2,9 +2,11 @@ import React from 'react'
 
 import "./Letter.css"
 
-const Letter = () => {
+const Letter = ({ teste }) => {
   return (
-    <div>Letter</div>
+    <div className='Letter'>
+      A
+    </div>
   )
 }
 
