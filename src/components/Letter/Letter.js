@@ -2,7 +2,7 @@ import React from 'react'
 
 import "./Letter.css"
 
-const Letter = ({ teste }) => {
+const Letter = ({ x, y }) => {
   return (
     <div className='Letter'>
       A
