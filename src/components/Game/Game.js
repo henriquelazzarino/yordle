@@ -11,7 +11,7 @@ const Game = () => {
     const id = setTimeout(()=>{
     if (board.length===0&&answer) {
       const createInitialBoard = () => {
-        const rows = 6;
+        const rows = 5;
         const columns = answer.length;
         const initialBoard = Array.from({ length: rows }, () =>
         Array(columns).fill(null)

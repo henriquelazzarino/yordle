@@ -1,5 +1,10 @@
 .Letter{
     font-size: 3.5rem;
     font-weight: bold;
-    border: 5px solid #bbb;
+    border: 5px solid #ddd;
+    border-bottom: 10px solid #ddd;
+    border-radius: 5px;
+    padding: 8px;
+    color: #1d1d1d;
+    background-color: #fff;
 }

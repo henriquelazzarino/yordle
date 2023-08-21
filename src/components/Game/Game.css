@@ -1,4 +1,7 @@
 .Game{
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
     height: fit-content;
     width: fit-content;
 }
