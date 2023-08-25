@@ -57,7 +57,7 @@ const GameContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <GameContext.Provider value={{ answer, setAnswer, board, setBoard }}>
+    <GameContext.Provider value={{ answer, setAnswer, board, setBoard, attempt }}>
       {children}
     </GameContext.Provider>
   );

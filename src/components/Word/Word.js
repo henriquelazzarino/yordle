@@ -9,7 +9,7 @@ const Word = ({ size }) => {
   return (
     <div className='word'>
       {lettersArray.map((i)=>(
-        <Letter key={i}/>
+        <Letter key={i} y={i}/>
       ))}
     </div>
   )

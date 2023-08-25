@@ -1,11 +1,17 @@
 .Letter{
-    font-size: 3.5rem;
+    font-size: 2.7rem;
     font-weight: bold;
-    border: 5px solid #ddd;
-    border-bottom: 10px solid #ddd;
+    background-color: #cdd7fd;
     border-radius: 5px;
-    color: #1d1d1d;
-    background-color: #fff;
-    min-height: 6rem;
+    color: #000000;
+    min-height: 5rem;
     aspect-ratio: 5/6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+
+.exists{
+    background-color: #a8affa;
+    border: 3px solid #818cf8;
 }
