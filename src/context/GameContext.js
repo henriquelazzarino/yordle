@@ -21,8 +21,6 @@ const GameContextProvider = ({ children }) => {
 
   const onDelete = () => {};
 
-  const onSelectLetter = () => {};
-
   const fetchChampions = async () => {
     try {
       const response = await fetch(championsTxt);
@@ -53,7 +51,6 @@ const GameContextProvider = ({ children }) => {
       const champions = await fetchChampions();
       const randomChampion = getRandomChampion(champions);
       setAnswer(randomChampion.toUpperCase());
-      console.log(randomChampion);
     };
 
     init();

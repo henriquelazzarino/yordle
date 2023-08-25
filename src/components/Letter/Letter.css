@@ -4,7 +4,8 @@
     border: 5px solid #ddd;
     border-bottom: 10px solid #ddd;
     border-radius: 5px;
-    padding: 8px;
     color: #1d1d1d;
     background-color: #fff;
+    min-height: 6rem;
+    aspect-ratio: 5/6;
 }
