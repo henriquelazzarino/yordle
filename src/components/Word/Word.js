@@ -5,6 +5,7 @@ import Letter from '../Letter/Letter'
 
 const Word = ({ size }) => {
   const lettersArray = Array.from({ length: size }, (_, index) => index);
+  console.log(lettersArray)
   return (
     <div className='word'>
       {lettersArray.map((i)=>(

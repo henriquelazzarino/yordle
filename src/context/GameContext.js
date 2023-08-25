@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
+import championsTxt from "../data/champions.txt";
 
 export const GameContext = createContext();
 
@@ -24,12 +25,19 @@ const GameContextProvider = ({ children }) => {
 
   const fetchChampions = async () => {
     try {
-      const response = await fetch("http://localhost:3000/champions");
+      const response = await fetch(championsTxt);
       if (!response.ok) {
         throw new Error("Failed to fetch champions data");
       }
-      const championsData = await response.json();
-      return championsData.map((champion) => champion.name);
+      let champions = [];
+      await response.text().then((res) => {
+        const championsArray = res.split("\n");
+        for (let i = 0; i < championsArray.length; i++) {
+          champions.push(championsArray[i].replace('\r', ''))
+        }
+        return champions
+      });
+      return champions;
     } catch (error) {
       console.error(error);
     }
@@ -45,6 +53,7 @@ const GameContextProvider = ({ children }) => {
       const champions = await fetchChampions();
       const randomChampion = getRandomChampion(champions);
       setAnswer(randomChampion.toUpperCase());
+      console.log(randomChampion);
     };
 
     init();

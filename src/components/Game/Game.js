@@ -20,9 +20,6 @@ const Game = () => {
       };
       
       setBoard(createInitialBoard());
-      console.log(answer)
-      console.log(answer)
-      
     }
   }, 1000)
   return ()=>clearTimeout(id)
