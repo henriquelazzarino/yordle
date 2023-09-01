@@ -20,8 +20,23 @@ const GameContextProvider = ({ children }) => {
   };
 
   const onSelectLetter = (letter) => {
-    
     setChamp((c) => c + letter);
+    setBoard((b) => {
+      const newBoard = [...b];
+      const row = newBoard[attempt];
+      const champLetterIndex = champ.length - 1; // Índice da última letra em champ
+
+    for (let i = 0; i < row.length; i++) {
+      if (row[i] === null) {
+        // if (i <= champLetterIndex) {
+          console.log("Champ: "+champ)
+          row[i] = letter;
+        // }
+        break;
+      }
+    }
+      return newBoard;
+    });
   };
 
   const onDelete = () => {};
@@ -66,7 +81,7 @@ const GameContextProvider = ({ children }) => {
   }, [answer])
 
   return (
-    <GameContext.Provider value={{ answer, setAnswer, board, setBoard, attempt }}>
+    <GameContext.Provider value={{ answer, setAnswer, board, setBoard, attempt, onEnter, onDelete, onSelectLetter }}>
       {children}
     </GameContext.Provider>
   );

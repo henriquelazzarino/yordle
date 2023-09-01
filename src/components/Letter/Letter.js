@@ -3,9 +3,8 @@ import { GameContext } from '../../context/GameContext'
 
 import "./Letter.css"
 
-const Letter = ({ y }) => {
-  const { board, setBoard, attempt } = useContext(GameContext); 
-  console.log(board[attempt][y])
+const Letter = ({ y, attempt }) => {
+  const { board } = useContext(GameContext);
   return (
     <div className={'Letter'}>
       {board[attempt][y]}

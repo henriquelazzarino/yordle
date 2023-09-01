@@ -30,7 +30,7 @@ const Game = () => {
   return (
     <div className="Game">
       {board&&board.map((linha, i) =>  (
-        <Word size={linha.length} key={i}/>
+        <Word size={linha.length} key={i} attempt={i}/>
       ))}
     </div>
   );
