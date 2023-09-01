@@ -8,8 +8,7 @@ const Letter = ({ y }) => {
   console.log(board[attempt][y])
   return (
     <div className={'Letter'}>
-      {/* {null} */}
-      A
+      {board[attempt][y]}
     </div>
   )
 }

@@ -12,7 +12,7 @@ aphelios
 blitzcrank
 brand
 braum
-bard
+bardo
 belveth
 caitlyn
 cassiopeia

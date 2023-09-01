@@ -19,6 +19,11 @@ const GameContextProvider = ({ children }) => {
     }
   };
 
+  const onSelectLetter = (letter) => {
+    
+    setChamp((c) => c + letter);
+  };
+
   const onDelete = () => {};
 
   const fetchChampions = async () => {
@@ -55,6 +60,10 @@ const GameContextProvider = ({ children }) => {
 
     init();
   }, []);
+
+  useEffect(()=>{
+    console.log(answer)
+  }, [answer])
 
   return (
     <GameContext.Provider value={{ answer, setAnswer, board, setBoard, attempt }}>
