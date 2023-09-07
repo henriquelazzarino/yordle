@@ -34,6 +34,8 @@ const GameContextProvider = ({ children }) => {
               row[i] = champ[i];
             }
             return newBoard;
+          } else {
+            row[i] = champ[i];
           }
         }
         return newBoard;
@@ -46,7 +48,9 @@ const GameContextProvider = ({ children }) => {
     console.log(champ)
   }, [champ]);
 
-  const onDelete = () => {};
+  const onDelete = () => {
+    setChamp((c) => c.slice(0, -1));
+  };
 
   const fetchChampions = async () => {
     try {
