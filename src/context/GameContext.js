@@ -10,13 +10,7 @@ const GameContextProvider = ({ children }) => {
   const [champ, setChamp] = useState(String(""));
 
   const onEnter = async () => {
-    if (champ.length < answer.length) alert("Tamanho");
-    else if (!(await fetchChampions().then((res) => res.has(champ))))
-      alert("Inexistente"); //Talvez de erro
-    else if (champ === answer) alert("Ganhou");
-    else {
-      setAttempt((a) => a + 1);
-    }
+    console.log(answer)
   };
 
   const onSelectLetter = (letter) => {
