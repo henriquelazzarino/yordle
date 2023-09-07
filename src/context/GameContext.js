@@ -7,7 +7,7 @@ const GameContextProvider = ({ children }) => {
   const [answer, setAnswer] = useState(null);
   const [board, setBoard] = useState([]);
   const [attempt, setAttempt] = useState(0);
-  const [champ, setChamp] = useState("");
+  const [champ, setChamp] = useState(String(""));
 
   const onEnter = async () => {
     if (champ.length < answer.length) alert("Tamanho");
@@ -21,23 +21,30 @@ const GameContextProvider = ({ children }) => {
 
   const onSelectLetter = (letter) => {
     setChamp((c) => c + letter);
-    setBoard((b) => {
-      const newBoard = [...b];
-      const row = newBoard[attempt];
-      const champLetterIndex = champ.length - 1; // Índice da última letra em champ
+  };
 
-    for (let i = 0; i < row.length; i++) {
-      if (row[i] === null) {
-        // if (i <= champLetterIndex) {
-          console.log("Champ: "+champ)
-          row[i] = letter;
-        // }
-        break;
+  useEffect(() => {
+    if (board && board[attempt]) {
+      setBoard((b) => {
+        const newBoard = [...b];
+        const row = newBoard[attempt];
+        for (let i = 0; i < row.length; i++) {
+          if (row[i] === null) {
+            if (i < champ.length) {
+              row[i] = champ[i];
+            }
+            return newBoard;
+          }
+        }
+        return newBoard;
+      });
+      if (champ.length > board[attempt].length) {
+        setChamp(board[attempt].join(""));
       }
     }
-      return newBoard;
-    });
-  };
+
+    console.log(champ)
+  }, [champ]);
 
   const onDelete = () => {};
 
@@ -51,9 +58,9 @@ const GameContextProvider = ({ children }) => {
       await response.text().then((res) => {
         const championsArray = res.split("\n");
         for (let i = 0; i < championsArray.length; i++) {
-          champions.push(championsArray[i].replace('\r', ''))
+          champions.push(championsArray[i].replace("\r", ""));
         }
-        return champions
+        return champions;
       });
       return champions;
     } catch (error) {
@@ -76,12 +83,23 @@ const GameContextProvider = ({ children }) => {
     init();
   }, []);
 
-  useEffect(()=>{
-    console.log(answer)
-  }, [answer])
+  useEffect(() => {
+    console.log(answer);
+  }, [answer]);
 
   return (
-    <GameContext.Provider value={{ answer, setAnswer, board, setBoard, attempt, onEnter, onDelete, onSelectLetter }}>
+    <GameContext.Provider
+      value={{
+        answer,
+        setAnswer,
+        board,
+        setBoard,
+        attempt,
+        onEnter,
+        onDelete,
+        onSelectLetter,
+      }}
+    >
       {children}
     </GameContext.Provider>
   );

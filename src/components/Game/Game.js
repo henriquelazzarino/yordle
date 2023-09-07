@@ -25,8 +25,6 @@ const Game = () => {
   return ()=>clearTimeout(id)
   }, [answer]);
 
-  console.log(board)
-
   return (
     <div className="Game">
       {board&&board.map((linha, i) =>  (

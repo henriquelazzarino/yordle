@@ -8,7 +8,7 @@ const Keyboard = () => {
   const keys3 = ["Z", "X", "C", "V", "B", "N", "M"];
   const { onEnter, onSelectLetter, onDelete } = useContext(GameContext);
 
-  const handleKeyBoard = useCallback((e) => {
+  const handleKeyBoard = (e) => {
     if (e.key === "Enter") {
       onEnter();
     } else if (e.key === "Backspace") {
@@ -24,14 +24,14 @@ const Keyboard = () => {
         onSelectLetter(keyPressed);
       }
     }
-  }, []);
+  };
 
   useEffect(() => {
-    document.addEventListener("keypress", handleKeyBoard);
+    document.addEventListener("keydown", handleKeyBoard);
     return () => {
-      document.removeEventListener("keypress ", handleKeyBoard);
+      document.removeEventListener("keydown", handleKeyBoard);
     };
-  }, [handleKeyBoard]);
+  }, []);
 
   return <></>;
 };
