@@ -10,7 +10,7 @@ const GameContextProvider = ({ children }) => {
   const [champ, setChamp] = useState(String(""));
 
   const onEnter = async () => {
-    console.log(answer)
+    
   };
 
   const onSelectLetter = (letter) => {
