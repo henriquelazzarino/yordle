@@ -1,6 +1,9 @@
-import React, { useCallback, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 
 import { GameContext } from "../../context/GameContext";
+
+import "./Keyboard.css";
+import Key from "../Key/Key";
 
 const Keyboard = () => {
   const keys1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
@@ -33,7 +36,46 @@ const Keyboard = () => {
     };
   }, []);
 
-  return <></>;
+  return (
+    <div className="Keyboard">
+      <div className="Keyboard__row">
+        {keys1.map((key) => (
+          <Key
+            key={key}
+            letter={key}
+            disabled={false}
+            wrongPosition={false}
+          />
+        ))}
+      </div>
+      <div className="Keyboard__row">
+        {keys2.map((key) => (
+          <Key
+            key={key}
+            letter={key}
+            disabled={false}
+            wrongPosition={false}
+          />
+        ))}
+      </div>
+      <div className="Keyboard__row">
+        <Key
+          letter="ENTER"
+          />
+        {keys3.map((key) => (
+          <Key
+            key={key}
+            letter={key}
+            disabled={false}
+            wrongPosition={false}
+          />
+        ))}
+        <Key
+          letter="DELETE"
+          />
+      </div>
+    </div>
+  );
 };
 
 export default Keyboard;

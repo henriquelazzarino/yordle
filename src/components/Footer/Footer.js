@@ -5,7 +5,7 @@ import './Footer.css'
 const Footer = () => {
   return (
     <div className='Footer'>
-        Made by <a href="https://github.com/henriquelazzarino">Henrique A Lazzarino</a>
+        Made by <a href="https://github.com/henriquelazzarino" target='_blank'>Henrique A Lazzarino</a>
     </div>
   )
 }

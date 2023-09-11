@@ -1,0 +1,13 @@
+.Key{
+    padding: 25px;
+    background-color: #475569;
+    font-size: 1.4rem;
+    border-radius: 5px;
+    color: white;
+    user-select: none;
+}
+
+.Key:hover{
+    background-color: #5e6c84;
+    cursor: pointer;
+}
