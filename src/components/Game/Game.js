@@ -8,8 +8,7 @@ const Game = () => {
   const { answer, board, setBoard } = useContext(GameContext);
 
   useEffect(() => {
-    const id = setTimeout(()=>{
-    if (board.length===0&&answer) {
+    if (answer) {
       const createInitialBoard = () => {
         const rows = 5;
         const columns = answer.length;
@@ -21,8 +20,6 @@ const Game = () => {
       
       setBoard(createInitialBoard());
     }
-  }, 1000)
-  return ()=>clearTimeout(id)
   }, [answer]);
 
   return (

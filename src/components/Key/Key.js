@@ -20,7 +20,7 @@ const Key = ({ letter, disabled, wrongPosition }) => {
     });
   }, [disabled, wrongPosition]);
 
-  const selectLetter = (e) => {
+  const selectLetter = () => {
     if (letter === "ENTER") {
       onEnter();
     } else if (letter === "DELETE") {
