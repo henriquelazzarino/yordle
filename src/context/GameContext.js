@@ -12,37 +12,10 @@ const GameContextProvider = ({ children }) => {
   const [win, setWin] = useState(false);
   const [size, setSize] = useState(false);
   const [notFound, setNotFound] = useState(false);
+  const [enter, setEnter] = useState(false);
 
   const onEnter = async () => {
-    if (champ.length < answer.length) {
-      setSize(true);
-      return;
-    }
-
-    const all = await fetchChampions();
-
-    console.log(!all.includes(champ))
-    console.log(champ)
-
-    if (!all.includes(champ)) {
-      setNotFound(true);
-      return;
-    }
-
-    console.log(champ, board, answer);
-
-    //Win
-    if (champ === answer) {
-      console.log("win");
-      setWin(true);
-    }
-
-    //Game Over
-    if (board.length > 0 && attempt === board.length) {
-      setLose(true);
-    }
-    setAttempt((a) => a + 1);
-    setChamp(String(""));
+    setEnter(true);
   };
 
   const onSelectLetter = (letter) => {
@@ -122,8 +95,41 @@ const GameContextProvider = ({ children }) => {
   }, [board]);
 
   useEffect(() => {
-    console.log(champ);
-  }, [champ]);
+    if (enter) {
+      const func = async () => {
+          if (champ.length > 0 || champ.length < answer.length) {
+            setSize(true);
+            return;
+          }
+
+          const all = await fetchChampions();
+          if (!all.includes(champ.toLowerCase())) {
+            setNotFound(true);
+            return;
+          }
+
+          //Win
+          if (champ === answer) {
+            setWin(true);
+          }
+
+          //Next Attempt
+          if (champ !== answer) {
+            setAttempt((a) => a + 1);
+            setChamp("");
+          }
+
+          //Game Over
+          if (board.length > 0 && attempt === board.length) {
+            setLose(true);
+          }
+      };
+
+      func();
+    }
+
+    setEnter(false);
+  }, [enter]);
 
   return (
     <GameContext.Provider
@@ -140,11 +146,15 @@ const GameContextProvider = ({ children }) => {
         lose,
         size,
         notFound,
+        setWin,
+        setLose,
+        setNotFound,
+        setSize,
       }}
     >
       {children}
     </GameContext.Provider>
   );
-}; 
+};
 
 export default GameContextProvider;
