@@ -23,7 +23,7 @@ function App() {
     <div className="App">
       <Game />
       <Keyboard />
-      {/* <Footer /> */}
+      <Footer />
       <Snackbar
         open={lose}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}

@@ -6,10 +6,10 @@
     color: black;
     font-family: 'Segoe UI', sans-serif;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    gap: 4px;
-    border-top: 2px solid rgb(44, 44, 44);    
+    gap: 5px;
+    padding: 4px;
 }
 
 .Footer a{

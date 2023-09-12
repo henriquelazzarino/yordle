@@ -18,6 +18,10 @@ const GameContextProvider = ({ children }) => {
   const [correctLetters, setCorrectLetters] = useState([]);
 
   const onEnter = async () => {
+    if (win || lose) {
+      return;
+    }
+      
     setEnter(true);
   };
 
