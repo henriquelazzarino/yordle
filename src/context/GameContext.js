@@ -94,10 +94,6 @@ const GameContextProvider = ({ children }) => {
   }, [answer]);
 
   useEffect(() => {
-    console.log(board);
-  }, [board]);
-
-  useEffect(() => {
     if (enter) {
       const func = async () => {
         if (champ.length === 0 || champ.length < answer.length) {
@@ -173,9 +169,8 @@ const GameContextProvider = ({ children }) => {
       };
 
       func();
+      setEnter(false);
     }
-
-    setEnter(false);
   }, [enter]);
 
   return (
@@ -200,6 +195,7 @@ const GameContextProvider = ({ children }) => {
         disabledLetters,
         wrongPosLetters,
         correctLetters,
+        enter
       }}
     >
       {children}

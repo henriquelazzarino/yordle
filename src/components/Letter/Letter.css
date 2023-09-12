@@ -11,7 +11,7 @@
     align-items: center;
 } 
 
-.exists{
+.Letter.exists{
     background-color: #a8affa;
     border: 3px solid #818cf8;
 }

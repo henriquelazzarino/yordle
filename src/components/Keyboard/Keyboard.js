@@ -36,10 +36,6 @@ const Keyboard = () => {
     };
   }, []);
 
-  console.log(disabledLetters);
-  console.log(wrongPosLetters);
-  console.log(correctLetters);
-
   return (
     <div className="Keyboard">
       <div className="Keyboard__row">
