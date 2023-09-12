@@ -9,7 +9,7 @@ const Keyboard = () => {
   const keys1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
   const keys2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
   const keys3 = ["Z", "X", "C", "V", "B", "N", "M"];
-  const { onEnter, onSelectLetter, onDelete } = useContext(GameContext);
+  const { onEnter, onSelectLetter, onDelete, disabledLetters, wrongPosLetters, correctLetters } = useContext(GameContext);
 
   const handleKeyBoard = (e) => {
     if (e.key === "Enter") {
@@ -36,6 +36,10 @@ const Keyboard = () => {
     };
   }, []);
 
+  console.log(disabledLetters);
+  console.log(wrongPosLetters);
+  console.log(correctLetters);
+
   return (
     <div className="Keyboard">
       <div className="Keyboard__row">
@@ -43,8 +47,9 @@ const Keyboard = () => {
           <Key
             key={key}
             letter={key}
-            disabled={false}
-            wrongPosition={false}
+            disabled={disabledLetters.includes(key)}
+            wrongPosition={wrongPosLetters.includes(key)}
+            correct={correctLetters.includes(key)}
           />
         ))}
       </div>
@@ -53,8 +58,9 @@ const Keyboard = () => {
           <Key
             key={key}
             letter={key}
-            disabled={false}
-            wrongPosition={false}
+            disabled={disabledLetters.includes(key)}
+            wrongPosition={wrongPosLetters.includes(key)}
+            correct={correctLetters.includes(key)}
           />
         ))}
       </div>
@@ -66,8 +72,9 @@ const Keyboard = () => {
           <Key
             key={key}
             letter={key}
-            disabled={false}
-            wrongPosition={false}
+            disabled={disabledLetters.includes(key)}
+            wrongPosition={wrongPosLetters.includes(key)}
+            correct={correctLetters.includes(key)}
           />
         ))}
         <Key

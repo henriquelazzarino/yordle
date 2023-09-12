@@ -1,15 +1,35 @@
-import React, { useContext } from 'react'
-import { GameContext } from '../../context/GameContext'
+import React, { useContext, useEffect, useState } from "react";
+import { GameContext } from "../../context/GameContext";
 
-import "./Letter.css"
+import "./Letter.css";
 
 const Letter = ({ y, attempt }) => {
-  const { board } = useContext(GameContext);
-  return (
-    <div className={'Letter'}>
-      {board[attempt][y]}
-    </div>
-  )
-}
+  const {
+    board,
+    disabledLetters,
+    wrongPosLetters,
+    correctLetters,
+    attempt: at1,
+  } = useContext(GameContext);
+  const [className, setClassName] = useState("");
 
-export default Letter
+  useEffect(() => {
+    setClassName(() => {
+      let className = "Letter ";
+      if (at1 === attempt) {
+        if (correctLetters.includes(board[attempt][y])) {
+          className += " disabled";
+        } else if (wrongPosLetters.includes(board[attempt][y])) {
+          className += " wrong-position";
+        } else if (disabledLetters.includes(board[attempt][y])) {
+          className += " correct";
+        }
+      }
+      return className;
+    });
+  }, [board, attempt]);
+
+  return <div className={className}>{board[attempt][y]}</div>;
+};
+
+export default Letter;

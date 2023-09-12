@@ -13,6 +13,9 @@ const GameContextProvider = ({ children }) => {
   const [size, setSize] = useState(false);
   const [notFound, setNotFound] = useState(false);
   const [enter, setEnter] = useState(false);
+  const [disabledLetters, setDisabledLetters] = useState([]);
+  const [wrongPosLetters, setWrongPosLetters] = useState([]);
+  const [correctLetters, setCorrectLetters] = useState([]);
 
   const onEnter = async () => {
     setEnter(true);
@@ -97,32 +100,76 @@ const GameContextProvider = ({ children }) => {
   useEffect(() => {
     if (enter) {
       const func = async () => {
-          if (champ.length > 0 || champ.length < answer.length) {
-            setSize(true);
-            return;
-          }
+        if (champ.length === 0 || champ.length < answer.length) {
+          setSize(true);
+          return;
+        }
 
-          const all = await fetchChampions();
-          if (!all.includes(champ.toLowerCase())) {
-            setNotFound(true);
-            return;
-          }
+        const all = await fetchChampions();
+        if (!all.includes(champ.toLowerCase())) {
+          setNotFound(true);
+          return;
+        }
 
-          //Win
-          if (champ === answer) {
-            setWin(true);
-          }
+        const correctLetters = [];
+        const incorrectLetters = [];
+        const wrongPosLetters = [];
 
-          //Next Attempt
-          if (champ !== answer) {
-            setAttempt((a) => a + 1);
-            setChamp("");
-          }
+        for (let i = 0; i < answer.length; i++) {
+          const answerChar = answer[i];
+          const champChar = champ[i];
 
-          //Game Over
-          if (board.length > 0 && attempt === board.length) {
-            setLose(true);
+          if (champChar === answerChar) {
+            correctLetters.push(answerChar);
+          } else if (answer.includes(champChar)) {
+            wrongPosLetters.push(champChar);
+          } else {
+            incorrectLetters.push(champChar);
           }
+        }
+        setDisabledLetters((d) => {
+          const newDisabledLetters = [...d];
+          for (let i = 0; i < incorrectLetters.length; i++) {
+            if (!newDisabledLetters.includes(incorrectLetters[i])) {
+              newDisabledLetters.push(incorrectLetters[i]);
+            }
+          }
+          return newDisabledLetters;
+        });
+        setWrongPosLetters((w) => {
+          const newWrongPosLetters = [...w];
+          for (let i = 0; i < wrongPosLetters.length; i++) {
+            if (!newWrongPosLetters.includes(wrongPosLetters[i])) {
+              newWrongPosLetters.push(wrongPosLetters[i]);
+            }
+          }
+          return newWrongPosLetters;
+        });
+        setCorrectLetters((c) => {
+          const newCorrectLetters = [...c];
+          for (let i = 0; i < correctLetters.length; i++) {
+            if (!newCorrectLetters.includes(correctLetters[i])) {
+              newCorrectLetters.push(correctLetters[i]);
+            }
+          }
+          return newCorrectLetters;
+        });
+
+        //Win
+        if (champ === answer) {
+          setWin(true);
+        }
+
+        //Next Attempt
+        if (champ !== answer) {
+          setAttempt((a) => a + 1);
+          setChamp("");
+        }
+
+        //Game Over
+        if (board.length > 0 && attempt === board.length) {
+          setLose(true);
+        }
       };
 
       func();
@@ -150,6 +197,9 @@ const GameContextProvider = ({ children }) => {
         setLose,
         setNotFound,
         setSize,
+        disabledLetters,
+        wrongPosLetters,
+        correctLetters,
       }}
     >
       {children}

@@ -7,6 +7,18 @@
     user-select: none;
 }
 
+.disabled{
+    opacity: 0.4;
+}
+
+.wrong-position{
+    background-color: #FB923C;
+}
+
+.correct{
+    background-color: #61bd4f;
+}
+
 .Key:hover{
     background-color: #5e6c84;
     cursor: pointer;

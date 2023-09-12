@@ -3,22 +3,23 @@ import React, { useContext, useEffect, useState } from 'react'
 import './Key.css'
 import { GameContext } from '../../context/GameContext';
 
-const Key = ({ letter, disabled, wrongPosition }) => {
+const Key = ({ letter, disabled, wrongPosition, correct }) => {
   const [className, setClassName] = useState("");
   const { onSelectLetter, onEnter, onDelete } = useContext(GameContext);
 
   useEffect(() => {
     setClassName(() => {
       let className = "Key";
-      if (disabled) {
-        className += " disabled";
-      }
-      if (wrongPosition) {
+      if (correct) {
+        className += " correct";
+      }else if (wrongPosition) {
         className += " wrong-position";
+      }else if (disabled) {
+        className += " disabled";
       }
       return className;
     });
-  }, [disabled, wrongPosition]);
+  }, [disabled, wrongPosition, correct]);
 
   const selectLetter = () => {
     if (letter === "ENTER") {
