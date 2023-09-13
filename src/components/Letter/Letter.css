@@ -9,9 +9,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: .2s;
 } 
 
-.Letter.exists{
+.Letter.exists:not(.Letter.correct, .Letter.wrong-position, .Letter.disabled){
     background-color: #a8affa;
     border: 3px solid #818cf8;
+    animation: hasLetter .21s forwards;
+}
+
+@keyframes hasLetter {
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.2);
+    }
+    100%{
+        transform: scale(1);
+    }
 }
