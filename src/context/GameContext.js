@@ -111,6 +111,9 @@ const GameContextProvider = ({ children }) => {
           return;
         }
 
+        setSize(false);
+        setNotFound(false);
+
         const correctLetters = [];
         const incorrectLetters = [];
         const wrongPosLetters = [];

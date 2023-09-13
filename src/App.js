@@ -2,7 +2,7 @@ import Game from "./components/Game/Game";
 import "./App.css";
 import Keyboard from "./components/Keyboard/Keyboard";
 import Footer from "./components/Footer/Footer";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GameContext } from "./context/GameContext";
 import { Alert, Snackbar } from "@mui/material";
 
@@ -13,11 +13,19 @@ function App() {
     answer,
     size,
     notFound,
-    setWin,
-    setLose,
-    setNotFound,
-    setSize,
   } = useContext(GameContext);
+
+  const [notFound2, setNotFound2] = useState(false);
+  const [size2, setSize2] = useState(false);
+
+  useEffect(() => {
+    if (notFound) {
+      setNotFound2(true);
+    }
+    if (size) {
+      setSize2(true);
+    }
+  }, [notFound, size]);
 
   return (
     <div className="App">
@@ -41,20 +49,20 @@ function App() {
         </Alert>
       </Snackbar>
       <Snackbar
-        open={size}
+        open={size2}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
         autoHideDuration={1500}
-        onClose={() => setSize(false)}
+        onClose={() => setSize2(false)}
       >
         <Alert severity="info" variant="filled">
           Not enough letters!
         </Alert>
       </Snackbar>
       <Snackbar
-        open={notFound}
+        open={notFound2}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
         autoHideDuration={1500}
-        onClose={() => setNotFound(false)}
+        onClose={() => setNotFound2(false)}
       >
         <Alert severity="info" variant="filled">
           Champion doesn't exist!

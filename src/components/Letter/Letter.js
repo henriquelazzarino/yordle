@@ -7,12 +7,15 @@ const Letter = ({ y, attempt, correctPlace, wrongPlace, nonExistent }) => {
   const {
     board,
     attempt: currentAttempt,
+    notFound,
+    size
   } = useContext(GameContext);
 
   const [className, setClassName] = useState("");
 
   useEffect(() => {
-    if ((className.includes("exists") || className.length === 0) && currentAttempt === attempt) {
+    if ((className.includes("exists") || className.length === 0) && 
+        (currentAttempt === attempt && (!notFound && !size))) {
       if (correctPlace.includes(board[attempt][y])) {
         setClassName("correct");
       } else if (wrongPlace.includes(board[attempt][y])) {
