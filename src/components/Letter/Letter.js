@@ -23,7 +23,15 @@ const Letter = ({ y, attempt, correctPlace, wrongPlace, nonExistent }) => {
         setClassName("");
       }
     }
-  }, [correctPlace, wrongPlace, nonExistent, board]);
+
+    if (board[attempt][y] && className.includes("exists")) {
+      setClassName(c => c + " exists");
+    } else {
+      setClassName(c => c.replace(" exists", ""));
+    }
+
+    console.log(board)
+  }, [correctPlace, wrongPlace, nonExistent, board, attempt, y, currentAttempt]);
 
   return <div className={"Letter " + className}>{board[attempt][y]}</div>;
 };
