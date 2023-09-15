@@ -6,21 +6,30 @@ import { GameContext } from '../../context/GameContext';
 
 const Word = ({ size, attempt }) => {
   const lettersArray = Array.from({ length: size }, (_, index) => index);
-  const { board, answer, enter } = useContext(GameContext);
+  const { board, answer, enter, notFound, size: sz, setNotFound, setSize } = useContext(GameContext);
 
   const [correctLettersInPlace, setCorrectLettersInPlace] = useState([]);
   const [correctLettersOutOfPlace, setCorrectLettersOutOfPlace] = useState([]);
   const [nonExistentLetters, setNonExistentLetters] = useState([]);
 
   useEffect(() => {
+    if (notFound || sz){
+      setCorrectLettersInPlace([]);
+      setCorrectLettersOutOfPlace([]);
+      setNonExistentLetters([]);
+      return
+    }
+
     if (answer && board[attempt]) {
-      if (enter) {
+      if (enter) { 
         const answerLetters = answer.split("");
         const actualLetters = board[attempt];
           
         const correctInPlace = [];
         const correctOutOfPlace = [];
         const nonExistent = [];
+
+        
         
         for (let i = 0; i < actualLetters.length; i++) {
           const actualLetter = actualLetters[i];
@@ -30,7 +39,7 @@ const Word = ({ size, attempt }) => {
             correctInPlace.push(actualLetter);
           } else if (answerLetters.includes(actualLetter)) {
             correctOutOfPlace.push(actualLetter);
-          } else {
+          } else if (!answerLetters.includes(actualLetter)){
             nonExistent.push(actualLetter);
           }
         }
@@ -41,7 +50,7 @@ const Word = ({ size, attempt }) => {
       }
     }
   
-  }, [  answer, board, enter]);
+  }, [answer, board, enter, notFound, sz, attempt]);
 
   return (
     <div className='word'>

@@ -10,8 +10,8 @@ const GameContextProvider = ({ children }) => {
   const [champ, setChamp] = useState("");
   const [lose, setLose] = useState(false);
   const [win, setWin] = useState(false);
-  const [size, setSize] = useState(false);
-  const [notFound, setNotFound] = useState(false);
+  const [size, setSize] = useState();
+  const [notFound, setNotFound] = useState();
   const [enter, setEnter] = useState(false);
   const [disabledLetters, setDisabledLetters] = useState([]);
   const [wrongPosLetters, setWrongPosLetters] = useState([]);
@@ -110,9 +110,6 @@ const GameContextProvider = ({ children }) => {
           setNotFound(true);
           return;
         }
-
-        setSize(false);
-        setNotFound(false);
 
         const correctLetters = [];
         const incorrectLetters = [];
