@@ -28,8 +28,6 @@ const Word = ({ size, attempt }) => {
         const correctInPlace = [];
         const correctOutOfPlace = [];
         const nonExistent = [];
-
-        
         
         for (let i = 0; i < actualLetters.length; i++) {
           const actualLetter = actualLetters[i];
