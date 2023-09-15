@@ -12,6 +12,19 @@
     transition: .2s;
 } 
 
+.Letter.correct,
+.Letter.wrong-position{
+    color: #e6e6e6;
+}
+
+.Letter.correct{
+    border: 3px solid #5baf4a;
+}
+
+.Letter.wrong-position{
+    border: 3px solid #df8135;
+}
+
 .Letter.exists:not(.Letter.correct, .Letter.wrong-position, .Letter.disabled){
     background-color: #a8affa;
     border: 3px solid #818cf8;
