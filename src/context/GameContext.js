@@ -106,6 +106,8 @@ const GameContextProvider = ({ children }) => {
         }
 
         const all = await fetchChampions();
+        console.log(!all.includes(champ.toLowerCase()))
+        console.log(champ)
         if (!all.includes(champ.toLowerCase())) {
           setNotFound(true);
           return;
@@ -114,6 +116,9 @@ const GameContextProvider = ({ children }) => {
         const correctLetters = [];
         const incorrectLetters = [];
         const wrongPosLetters = [];
+
+        setSize(false);
+        setNotFound(false);
 
         for (let i = 0; i < answer.length; i++) {
           const answerChar = answer[i];
@@ -176,6 +181,13 @@ const GameContextProvider = ({ children }) => {
       setEnter(false);
     }
   }, [enter]);
+
+  useEffect(()=>{
+    if (notFound || size) {
+      setNotFound(false);
+      setSize(false);
+    }
+  }, [notFound, size])
 
   return (
     <GameContext.Provider
