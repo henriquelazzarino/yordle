@@ -172,7 +172,7 @@ const GameContextProvider = ({ children }) => {
         }
 
         //Game Over
-        if (board.length > 0 && attempt === board.length) {
+        if (attempt === board.length-1) {
           setLose(true);
         }
       };
