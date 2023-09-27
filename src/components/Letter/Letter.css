@@ -25,12 +25,6 @@
     border: 3px solid #df8135;
 }
 
-.Letter.wrong{
-    border: 3px solid #e53e3e;
-    background-color: #fde2e2;
-    animation: wrongLetter .21s forwards;
-}
-
 .Letter.exists:not(.Letter.correct, .Letter.wrong-position, .Letter.disabled){
     background-color: #a8affa;
     border: 3px solid #818cf8;
