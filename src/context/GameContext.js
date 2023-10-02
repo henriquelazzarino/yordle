@@ -168,13 +168,13 @@ const GameContextProvider = ({ children }) => {
         //Next Attempt
         if (champ !== answer) {
           setAttempt((a) => a + 1);
+          if (attempt === board.length-1 && !win) {
+            setLose(true);
+          }
           setChamp("");
         }
 
         //Game Over
-        if (attempt === board.length-1) {
-          setLose(true);
-        }
       };
 
       func();
