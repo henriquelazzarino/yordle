@@ -27,11 +27,11 @@ const Word = ({ size, attempt }) => {
           const answerLetter = answerLetters[i];
           
           if (actualLetter === answerLetter) {
-            correctInPlace.push(actualLetter);
+            correctInPlace.push({ letter: actualLetter, index: i});
           } else if (answerLetters.includes(actualLetter)) {
-            correctOutOfPlace.push(actualLetter);
+            correctOutOfPlace.push({ letter: actualLetter, index: i});
           } else if (!answerLetters.includes(actualLetter)){
-            nonExistent.push(actualLetter);
+            nonExistent.push({ letter: actualLetter, index: i});
           }
         }
         

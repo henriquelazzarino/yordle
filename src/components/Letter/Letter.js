@@ -15,7 +15,7 @@ const Letter = ({ y, attempt, correctPlace, wrongPlace, nonExistent }) => {
 
   useEffect(() => {
 
-    if (((className.includes("exists") && !className.includes("disabled")) || className.length === 0) &&
+    if (className.includes("exists") && !className.includes("disabled") &&
         currentAttempt === attempt) {
       if (correctPlace.includes(board[attempt][y])) {
         setClassName("correct")
@@ -26,15 +26,16 @@ const Letter = ({ y, attempt, correctPlace, wrongPlace, nonExistent }) => {
       } else if (!className.includes("exists")) {
         setClassName("");
       }
-    } 
+    }
+
   }, [correctPlace, wrongPlace, nonExistent, board, attempt, y, currentAttempt, notFound, size]);
 
   useEffect(() => {
-      if (board[attempt][y] && !className.includes("exists")) {
+      if (board[attempt][y] && className.length === 0) {
         setClassName(c => c + " exists");
       } else if(!board[attempt][y] || board[attempt][y] === null){
         setClassName(c => c.replace(" exists", ""));
-      }
+      } 
   }, [board]);
 
   useEffect(() => {
